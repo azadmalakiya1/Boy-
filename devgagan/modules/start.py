@@ -349,3 +349,17 @@ async def guide_page_1(_, query: CallbackQuery):
             [InlineKeyboardButton("More Features 😎", callback_data="guide_page_2")]
         ])
   )
+@app.on_message(filters.command("start") & filters.private)
+async def start(client, message):
+    join = await subscribe(client, message)
+    if join == 1:
+        return
+    
+    await message.reply_text(
+        "Welcome! I am a Restricted Content Downloader Bot.\n\n"
+        "Use /help to see all commands or click the button below for guide.",
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("📖 Guide", callback_data="guide_page_1")]
+        ])
+    )
+ 
